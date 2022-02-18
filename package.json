@@ -1,6 +1,6 @@
 {
   "name": "all-mp-merge-test-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "基于mp-merge的小程序合包工具测试",
   "main": "dist/index.js",
   "bin": {
