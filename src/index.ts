@@ -29,6 +29,7 @@ export default function index(): void {
     .option('uglifyjsCompress', '是否使用uglifyjs压缩所有js文件')
     .option('-g, --glob <glob>', 'glob匹配压缩文件', './**/*.js')
     .option('-i, --globIgnore <globIgnore>', 'glob忽略文件', '**/node_modules/**')
+    .option('-x, --suffix <suffix>', '样式文件后缀名', 'wxss')
     .parse(process.argv)
 
   const spinner = ora().start('正在处理请稍后')
@@ -98,7 +99,9 @@ export default function index(): void {
 
   // 这里对源产物进行分包优化
   // wepy 去除app.wxss和app.json
-  const deleteFileList = ['./app.wxss', './app.json']
+  // * 此处app.wxss仅对应微信小程序, 字节小程序为.ttss
+  const styleSuffix = program.suffix || 'wxss';
+  const deleteFileList = [`./app.${styleSuffix}`, './app.json']
   deleteFileList.forEach(item => {
     const rstPath = path.resolve(sourceOutput, item)
     _debug(`删除源目录产物文件${rstPath}`)

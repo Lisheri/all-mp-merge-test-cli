@@ -30,6 +30,7 @@ function index() {
         .option('uglifyjsCompress', '是否使用uglifyjs压缩所有js文件')
         .option('-g, --glob <glob>', 'glob匹配压缩文件', './**/*.js')
         .option('-i, --globIgnore <globIgnore>', 'glob忽略文件', '**/node_modules/**')
+        .option('-x, --suffix <suffix>', '样式文件后缀名', 'wxss')
         .parse(process.argv);
     var spinner = ora_1.default().start('正在处理请稍后');
     // source/cmd目录编译命令 target/cmd目录编译命令
@@ -96,7 +97,9 @@ function index() {
     _debug("sourceAppJson", sourceAppJson);
     // 这里对源产物进行分包优化
     // wepy 去除app.wxss和app.json
-    var deleteFileList = ['./app.wxss', './app.json'];
+    // * 此处app.wxss仅对应微信小程序, 字节小程序为.ttss
+    var styleSuffix = commander_1.default.suffix || 'wxss';
+    var deleteFileList = ["./app." + styleSuffix, './app.json'];
     deleteFileList.forEach(function (item) {
         var rstPath = path_1.default.resolve(sourceOutput, item);
         _debug("\u5220\u9664\u6E90\u76EE\u5F55\u4EA7\u7269\u6587\u4EF6" + rstPath);

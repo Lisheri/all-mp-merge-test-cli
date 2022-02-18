@@ -1,7 +1,7 @@
 {
-  "name": "mp-merge-cli",
+  "name": "all-mp-merge-test-cli",
   "version": "1.1.0",
-  "description": "小程序合包工具",
+  "description": "基于mp-merge的小程序合包工具测试",
   "main": "dist/index.js",
   "bin": {
     "mp-merge": "./dist/index.js",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/ManfredHu/mp-merge-cli.git"
   },
-  "author": "ManfredHuFe@gmail.com",
+  "author": "lisher",
   "license": "MIT",
   "dependencies": {
     "@babel/cli": "^7.10.3",
